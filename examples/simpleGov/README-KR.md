@@ -16,24 +16,23 @@
 
 Tendermint는 이러한 문제를 해결하고 개발자에게 대안을 제공하기 위해 고안되었습니다. Tendermint의 목표는 빌드 하려는 모든 어플리케이션 개발자를 지원하는 일반 엔진으로서 블록체인의 *네트워킹* 및 *합의* 레이어를 제공하는 것입니다. Tendermint를 사용하면 개발자는 *어플리케이션* 레이어에만 집중해야하므로 수백시간의 작업시간과 값 비싼 개발 환경을 절약 할 수 있습니다. 참고로 Tendermint는 Tendermint Core 엔진 내에서 사용 되는 비잔틴 장애 허용 합의 알고리즘을 나타냅니다.
 
-Tendermint는, [ABCI] (https://github.com/tendermint/abci)(Application-BlockChain Interface) 라 불리는 소켓 프로토콜을 통해 블록체인 엔진인 Tendermint Core (*네트워킹* 및 *합의* 레이어)를 *어플리케이션* 레이어에 연결합니다. 개발자는 Tendermint Core 엔진에서 실행되는 ABCI 지원 어플리케이션을 작성하기 위해 몇 가지 메시지만 구현 하면 됩니다. ABCI는 언어에 구속력이 없습니다. 즉, 개발자는 어떤 프로그래밍 언어를 이용해서 블록체인의 *어플리케이션* 파트를 구현할 수 있습니다. Tendermint Core 엔진 위에 구축하면 다음과 같은 이점도 있습니다.
+Tendermint는, [ABCI](https://github.com/tendermint/abci)(Application-BlockChain-Interface) 라 불리는 소켓 프로토콜을 통해 블록체인 엔진인 Tendermint Core (*네트워킹* 및 *합의* 레이어)를 *어플리케이션* 레이어에 연결합니다. 개발자는 Tendermint Core 엔진에서 실행되는 ABCI 지원 어플리케이션을 작성하기 위해 몇 가지 메시지만 구현 하면 됩니다. ABCI는 언어에 구속력이 없습니다. 즉, 개발자는 어떤 프로그래밍 언어를 이용해서 블록체인의 *어플리케이션* 파트를 구현할 수 있습니다. Tendermint Core 엔진 위에 구축하면 다음과 같은 이점도 있습니다.
 
-- ** 공용 또는 사설 블록체인이 가능합니다.** 개발자는 Tendermint Core 위에 권한이 부여 된 (사설) 권한이 없는 (공용) 모든 블록체인 어플리케이션을 배포 할 수 있습니다. 
--** 성능.** 텐더민트 코어는 짧은 시간 간격으로 많은 수의 트랜잭션을 처리 할 수있는 최첨단 블록체인 컨센서스 엔진입니다. Tendermint Core의 블록 시간은 1 초 정도로 낮을 수 있으며 해당 기간에 수천 회의 트랜잭션을 처리 할 수 ​​있습니다.
-- ** 즉각적인 완결성.** Tendermint 컨센서스 알고리즘의 속성은 즉각적인 완결성입니다. 즉 유효성 검사기의 1/3 미만이 악성 코드 (비잔틴) 인 한 포크는 생성되지 않습니다. 사용자는 블록이 생성되는 즉시 트랜잭션이 완결되었는지 확인할 수 있습니다.
--**보안.** Tendermint Core의 합의는 단지 장애를 허용하는 것이 아니라, 책임감있는 최적의 비잔틴 장애 허용 (BFT) 에 있습니다. 만일 블록체인이 포크되면, 책임을 밝힐 수있는 방법이 있습니다.
-- **라이트 클라이언트 지원**. 텐더민트는 내장된 라이트 클라이언트를 제공합니다.
+- **공용 또는 사설 블록체인이 가능합니다.** 개발자는 Tendermint Core 위에 권한이 부여 된 (사설) 권한이 없는 (공용) 모든 블록체인 어플리케이션을 배포 할 수 있습니다. 
+- **성능.** 텐더민트 코어는 짧은 시간 간격으로 많은 수의 트랜잭션을 처리 할 수있는 최첨단 블록체인 컨센서스 엔진입니다. Tendermint Core의 블록 시간은 1 초 정도로 낮을 수 있으며 해당 기간에 수천 회의 트랜잭션을 처리 할 수 ​​있습니다.
+- **즉각적인 완결성.** Tendermint 컨센서스 알고리즘의 속성은 즉각적인 완결성입니다. 즉 유효성 검사기의 1/3 미만이 악성 코드 (비잔틴) 인 한 포크는 생성되지 않습니다. 사용자는 블록이 생성되는 즉시 트랜잭션이 완결되었는지 확인할 수 있습니다.
+- **보안.** Tendermint Core의 합의는 단지 장애를 허용하는 것이 아니라, 책임감있는 최적의 비잔틴 장애 허용 (BFT) 에 있습니다. 만일 블록체인이 포크되면, 책임을 밝힐 수있는 방법이 있습니다.
+- **라이트 클라이언트 지원.** 텐더민트는 내장된 라이트 클라이언트를 제공합니다.
 
-하지만 가장 중요한 점은 텐더민트는 [Inter-Blockchain Communication Protocol] (https://github.com/cosmos/cosmos-sdk/tree/develop/docs/spec/ibc) (IBC)과 호환된다는 것입니다. 즉, 공용이든 사설이든 텐더민트 기반 블록체인은 본질적으로 코스모스 생태계와 연결되어 생태계의 다른 블록체인과 토큰을 안전하게 교환 할 수 있습니다. IBC와 코스모스를 통한 상호 운용성의 혜택은 텐더민트 체인의 자주권을 보호합니다. 비 텐더민트 체인은 IBC 어댑터 또는 페그존을 통해 코스모스에 연결할 수도 있지만 이 내용은 이 문서의 범위를 벗어납니다.
+하지만 가장 중요한 점은 텐더민트는 [Inter-Blockchain Communication Protocol](https://github.com/cosmos/cosmos-sdk/tree/develop/docs/spec/ibc) (IBC)과 호환된다는 것입니다. 즉, 공용이든 사설이든 텐더민트 기반 블록체인은 본질적으로 코스모스 생태계와 연결되어 생태계의 다른 블록체인과 토큰을 안전하게 교환 할 수 있습니다. IBC와 코스모스를 통한 상호 운용성의 혜택은 텐더민트 체인의 자주권을 보호합니다. 비 텐더민트 체인은 IBC 어댑터 또는 페그존을 통해 코스모스에 연결할 수도 있지만 이 내용은 이 문서의 범위를 벗어납니다.
 
-코스모스 생태계에 대한 자세한 내용은 [이 글] (https://blog.cosmos.network/understanding-the-value-proposition-of-cosmos-ecaef63350d)을 참조하십시오.
-
+코스모스 생태계에 대한 자세한 내용은 [이 글](https://blog.cosmos.network/understanding-the-value-proposition-of-cosmos-ecaef63350d)을 참조하십시오.
 
 ## 코스모스SDK 소개
 
 텐더민트 기반 블록체인을 개발한다는 것은 어플리케이션 (즉, 상태 머신) 만 코딩 하면 된다는 것을 의미합니다. 하지만 그 자체로는 다소 어려울 수 있습니다. 이것이 바로 Cosmos-SDK가 존재하는 이유입니다.
 
-[Cosmos-SDK] (https://github.com/cosmos/cosmos-sdk)는 Cosmos 허브와 같은 다중 자산 Proof-of-Stake (PoS) 블록체인이자 Proof-Of -Authority (PoA) 블록체인을 구축하기위한 플랫폼.
+[Cosmos-SDK](https://github.com/cosmos/cosmos-sdk)는 Cosmos 허브와 같은 다중 자산 Proof-of-Stake (PoS) 블록체인이자 Proof-Of -Authority (PoA) 블록체인을 구축하기위한 플랫폼.
 
 Cosmos-SDK의 목표는 개발자가 일반적인 블록체인 기능을 다시 만들 필요 없이 Cosmos 네트워크 내에서 상호 운용 가능한 맞춤 블록 첸인 어플리케이션을 쉽게 만들 수있게하고, Tendermint ABCI 어플리케이션을 작성하는 복잡성을 제거하는 것입니다. 우리는 Tendermint 위에 안전한 블록체인 어플리케이션을 구축하기 위해 npm과 유사한 프레임워크의 SDK를 구상하고 있습니다.
 
@@ -41,7 +40,7 @@ SDK는 설계 측면에서 유연성과 보안성을 최대한 신경쓰고 있�
 
 이것은 두 가지 주요 원칙에 기반합니다:
 
-- ** 합성성:** 누구나 Cosmos-SDK 용 모듈을 만들 수 있으며 이미 구축 된 모듈을 통합하는 것은 블록체인 어플리케이션으로 가져 오는 것 만큼 간단합니다.
+- **합성성:** 누구나 Cosmos-SDK 용 모듈을 만들 수 있으며 이미 구축 된 모듈을 통합하는 것은 블록체인 어플리케이션으로 가져 오는 것 만큼 간단합니다.
 
 - **기능들:** SDK는 기능 기반 보안에서 영감을 얻었으며, 수년간 블록체인 상태 머신과의 씨름을 통해 영향을 끼쳤습니다. 대부분의 개발자는 자체 모듈을 만들 때 다른 타사 모듈에 액세스 해야합니다. Cosmos-SDK는 개방형 프레임워크이며 이러한 모듈 중 일부는 악의적이라고 가정하기 때문에, 객체 기능 (OCAPS) 기반 원칙을 사용하여 SDK를 설계했습니다. 실제로, 이는 각 모듈이 다른 모듈에 대한 액세스 제어 목록을 유지하는 대신, 각 모듈은 사전 정의 된 기능 세트를 부여하기 위해 다른 모듈에 전달할 수 있는 키퍼라는 특수 객체를 구현한다는 것을 의미합니다. 예를 들어 모듈 A의 키퍼 인스턴스가 모듈 B로 전달되면, 후자는 모듈 A의 제한된 함수 집합을 호출 할 수 있습니다. 각 키퍼의 기능은 모듈 개발자가 정의하며 각 타사 모듈에 전달되는 기능을 기반으로 타사 모듈의 외부 코드 안전성을 이해하고 감사하는 것은 개발자의 임무입니다. '기능'에 대한 더 자세한 내용은 [이 글](http://habitatchronicles.com/2017/05/what-are-capabilities/)을 참조하십시오.
 
@@ -49,7 +48,7 @@ SDK는 설계 측면에서 유연성과 보안성을 최대한 신경쓰고 있�
 
 ## Tendermint 및 ABCI에 대한 알림
 
-Cosmos-SDK는 블록체인의 *어플리케이션* 레이어를 개발하기위한 프레임워크입니다. 이 어플리케이션은 [Application-Blockchain Interface] (https://github.com/tendermint/abci)의 약자 인 ABCI라는 간단한 프로토콜을 지원하는 모든 합의 엔진 (*합의* + *네트워킹* 레이어)에 연결될 수 있습니다.
+Cosmos-SDK는 블록체인의 *어플리케이션* 레이어를 개발하기위한 프레임워크입니다. 이 어플리케이션은 [Application-Blockchain Interface](https://github.com/tendermint/abci)의 약자 인 ABCI라는 간단한 프로토콜을 지원하는 모든 합의 엔진 (*합의* + *네트워킹* 레이어)에 연결될 수 있습니다.
 
 Tendermint Core는 Cosmos-SDK 위에 구축된 기본 컨센서스 엔진입니다. *어플리케이션* 및 *합의 엔진* 각자의 책임을 잘 이해하는 것이 중요합니다.
 
@@ -72,12 +71,12 @@ ABCI는 *합의 엔진*과 *어플리케이션* 사이의 연결을 설정합니
 *합의 엔진*과 *어플리케이션*이 서로 어떻게 상호 작용 하는지에 대한 개괄적인 개요를 설명하겠습니다.
 
 - 항상, 검증인 노드의 합의 엔진 (Tendermint Core)이 트랜잭션을 수신 할 때마다 CheckTx를 통해 어플리케이션에 전달하여 유효성을 검사합니다. 유효하면 트랜잭션이 메모리풀에 추가됩니다.
-- 우리가 블록 N에 있다고합시다. 유효성 검증인 세트 V가 있습니다. 다음 블록의 제안자는 *합의 엔진*에 의해 V에서 선택됩니다. 제안자는 메모리풀에서 유효한 트랜잭션을 수집하여 새 블록을 만듭니다. 그런 다음 블록은 다른 검증인들에게 알려지고 서명/커밋 됩니다. V의 2/3 이상이 *사전커밋*에 서명하면 블록은 블록 N+1이됩니다 (합의 알고리즘에 대한 자세한 설명은 [여기] (https://github.com/tendermint/tendermint/wiki/Byzantine-Consensus-Algorithm)를 클릭하십시오.
+- 우리가 블록 N에 있다고합시다. 유효성 검증인 세트 V가 있습니다. 다음 블록의 제안자는 *합의 엔진*에 의해 V에서 선택됩니다. 제안자는 메모리풀에서 유효한 트랜잭션을 수집하여 새 블록을 만듭니다. 그런 다음 블록은 다른 검증인들에게 알려지고 서명/커밋 됩니다. V의 2/3 이상이 *사전커밋*에 서명하면 블록은 블록 N+1이됩니다 (합의 알고리즘에 대한 자세한 설명은 [여기](https://github.com/tendermint/tendermint/wiki/Byzantine-Consensus-Algorithm)를 클릭하십시오.
 - 블록 N+1이 V의 2/3 이상에 의해 서명 될 때, 그것은 full-node로 알려지게 됩니다. full-node가 해당 블록을 수신하면 유효성을 확인합니다. 블록이 V의 2/3 이상 유효한 서명들을 보유하고 블록의 모든 트랜잭션들이 유효한 경우 블록은 유효합니다. *합의 엔진*은 트랜잭션의 유효성을 검사하기 위해 'DeliverTx'를 통해 어플리케이션으로 전송합니다. 각 트랜잭션 이후에 'DeliverTx`는 트랜잭션이 유효하면 새로운 상태를 반환합니다. 블록이 끝나면 최종 상태가 확약됩니다. 물론, 이것은 블록 내의 트랜잭션 순서가 중요하다는 것을 의미합니다.
 
 ## SDK-app의 아키텍처
 
-Cosmos-SDK는 Tendermint 기반 블록체인 어플리케이션을 위한 기본 템플릿을 제공합니다. 이 템플릿은 [여기] (https://github.com/cosmos/cosmos-sdk)에서 찾을 수 있습니다.
+Cosmos-SDK는 Tendermint 기반 블록체인 어플리케이션을 위한 기본 템플릿을 제공합니다. 이 템플릿은 [여기](https://github.com/cosmos/cosmos-sdk)에서 찾을 수 있습니다.
 
 본질적으로, 블록체인 어플리케이션은 단순히 복제된 상태 머신입니다. 상태 (예: 암호화폐, 각 계정이 보유하는 동전 수) 및 상태 전이를 트리거하는 트랜잭션이 있습니다. 어플리케이션 개발자는 상태, 트랜잭션 유형 및 다른 트랜잭션이 상태를 수정하는 방법을 정의합니다.
 
@@ -162,7 +161,7 @@ type KVStore interface {
 
 #### go-amino
 
-Cosmos-SDK는 Go 형식을 Protobuf3 호환 바이트로 직렬화 및 비직렬화 하기 위해 [go-amino] (https://github.com/cosmos/cosmos-sdk/blob/96451b55fff107511a65bf930b81fb12bed133a1/examples/basecoin/app/app.go#L97-L111)를 광범위하게 사용합니다.
+Cosmos-SDK는 Go 형식을 Protobuf3 호환 바이트로 직렬화 및 비직렬화 하기 위해 [go-amino](https://github.com/cosmos/cosmos-sdk/blob/96451b55fff107511a65bf930b81fb12bed133a1/examples/basecoin/app/app.go#L97-L111)를 광범위하게 사용합니다.
 
 Go-amino (예 : https://github.com/golang/protobuf)는 리플렉션을 사용하여 Go 객체를 인코딩/디코딩합니다.  이를 통해 SDK 개발자는 Proto3에 대한 별도의 스키마를 유지할 필요없이 Go에서 데이터 구조를 정의하는데 집중할 수 있습니다. 또한, Amino는 인터페이스 및 실제 타입을 위해 네이티브 지원을 통해 Proto3을 확장합니다.
 
@@ -294,13 +293,13 @@ sdk.RegisterWire(cdc)    // Msgs 등록
  }
 ```
 
-그런데, SDK는 Cosmos 허브에 대한 모든 결합/비결합 기능을 제공하는 [스테이킹 모듈] (https://github.com/cosmos/cosmos-sdk/tree/develop/x/stake)을 제공합니다.
+그런데, SDK는 Cosmos 허브에 대한 모든 결합/비결합 기능을 제공하는 [스테이킹 모듈](https://github.com/cosmos/cosmos-sdk/tree/develop/x/stake)을 제공합니다.
 
 #### 작업 시작
 
 시작하려면, 다음과 같은 간단한 단계를 따라야합니다:
 
-1. [Cosmos-SDK] (https://github.com/cosmos/cosmos-sdk/tree/develop) 저장소 복제
+1. [Cosmos-SDK](https://github.com/cosmos/cosmos-sdk/tree/develop) 저장소 복제
 2. 아직 존재하지 않는 어플리케이션에 필요한 모듈을 코딩하십시오.
 3. 앱 디렉토리를 만듭니다. 앱 메인 파일에서, 필요한 모듈을 가져 와서 다른 스토어들을 인스턴스화합니다.
 4. 블록체인을 실행하십시오.
@@ -311,12 +310,12 @@ sdk.RegisterWire(cdc)    // Msgs 등록
 
 ### 전제 조건
 
-- [go] (https://golang.org/dl/) 및 [git] (https://git-scm.com/downloads)이 설치되어 있어야 합니다.
+- [go](https://golang.org/dl/) 및 [git](https://git-scm.com/downloads)이 설치되어 있어야 합니다.
 - `PATH` 와 `GOPATH`를 설정하는 것을 잊지 마십시오.
 
 ### 작업 환경 설정
 
-[Cosmos-SDK repo] (https://githum.com/cosmos/cosmos-sdk)로 가서 포크하십시오. 그런 다음 터미널을 열고:
+[Cosmos-SDK repo](https://githum.com/cosmos/cosmos-sdk)로 가서 포크하십시오. 그런 다음 터미널을 열고:
 
 ```bash
 cd $GOPATH/src/github.com/your_username
@@ -344,9 +343,9 @@ git checkout -b my_new_application
 
 간단한 관리 어플리케이션
 
-이 자습서에서는 **간단한 관리 모듈**과 함께 **간단한 관리 어플리케이션**을 코딩 할 것입니다. Cosmos-SDK에서 작동하는 어플리케이션을 빌드하는데 필요한 기본 개념의 대부분이 설명될 것입니다. 참고로 이것은 Cosmos Hub에 사용되는 관리 모듈이 아닙니다. Hub에는 훨씬 더 많은 [고급 관리 모듈] (https://github.com/cosmos/cosmos-sdk/tree/develop/x/gov)이 대신 사용될 것입니다.
+이 자습서에서는 **간단한 관리 모듈**과 함께 **간단한 관리 어플리케이션**을 코딩 할 것입니다. Cosmos-SDK에서 작동하는 어플리케이션을 빌드하는데 필요한 기본 개념의 대부분이 설명될 것입니다. 참고로 이것은 Cosmos Hub에 사용되는 관리 모듈이 아닙니다. Hub에는 훨씬 더 많은 [고급 관리 모듈](https://github.com/cosmos/cosmos-sdk/tree/develop/x/gov)이 대신 사용될 것입니다.
 
-`simple_governance` 어플리케이션의 모든 코드는 [여기] (https://github.com/gamarin2/cosmos-sdk/tree/module_tutorial/examples/simpleGov/x/simple_governance)에서 찾을 수 있습니다. 모듈과 앱은 저장소의 루트 레벨이 아니라 examples 디렉토리에 있습니다. 이것은 단지 편의를 위한 것이며, 모듈과 어플리케이션을 루트 디렉토리에서 코딩 할 수 있습니다.
+`simple_governance` 어플리케이션의 모든 코드는 [여기](https://github.com/gamarin2/cosmos-sdk/tree/module_tutorial/examples/simpleGov/x/simple_governance)에서 찾을 수 있습니다. 모듈과 앱은 저장소의 루트 레벨이 아니라 examples 디렉토리에 있습니다. 이것은 단지 편의를 위한 것이며, 모듈과 어플리케이션을 루트 디렉토리에서 코딩 할 수 있습니다.
 
 두말 할 것 없이, 같이 해보시죠!
 
@@ -520,7 +519,7 @@ app.Router().
 
 `'제안서'` 와 `'투표'` 의 따옴표를 주목하십시오. 따옴표들은 이것들이 일정한 키워드라는 것을 나타냅니다. 예를 들어, 제안서 `0101`에 주소 `0x01`로 투표자가 캐스팅 한 옵션은 `'제안서'|0101|'투표'|0x01` 색인에 저장됩니다.
 
-이러한 키워드는 범위 쿼리를 지원하는 데 사용됩니다. 범위 쿼리 (TODO: 공식 링크)를 통해 개발자는 상점의 부분 공간을 쿼리하고 반복자를 반환 할 수 있습니다. 그들은 백그라운드에서 사용되는 [IAVL+tree] (https://github.com/tendermint/iavl)의 멋진 속성에 의해 가능합니다. 실제로, 이는 키-값 쌍의 지정된 부분 공간을 반복 하는 동안, O(1)의 속도로 키 - 값 쌍을 저장하고 쿼리 할 수 ​​있음을 의미합니다. 예를 들어, 우리는 `rangeQuery(SimpleGovStore, <제안서ID|'주소'>)`를 호출하여 주어진 제안서에 투표한 모든 주소를, 투표와 함께 쿼리 할 수 ​​있습니다.
+이러한 키워드는 범위 쿼리를 지원하는 데 사용됩니다. 범위 쿼리 (TODO: 공식 링크)를 통해 개발자는 상점의 부분 공간을 쿼리하고 반복자를 반환 할 수 있습니다. 그들은 백그라운드에서 사용되는 [IAVL+tree](https://github.com/tendermint/iavl)의 멋진 속성에 의해 가능합니다. 실제로, 이는 키-값 쌍의 지정된 부분 공간을 반복 하는 동안, O(1)의 속도로 키 - 값 쌍을 저장하고 쿼리 할 수 ​​있음을 의미합니다. 예를 들어, 우리는 `rangeQuery(SimpleGovStore, <제안서ID|'주소'>)`를 호출하여 주어진 제안서에 투표한 모든 주소를, 투표와 함께 쿼리 할 수 ​​있습니다.
 
 ##### 앱을 위한 키퍼들
 
@@ -580,7 +579,7 @@ func NewKeeperRead(SimpleGov sdk.StoreKey, ck bank.Keeper, sm stake.Keeper, code
 
 마지막으로 해야할 일은 `KeeperRead` 타입을 위한 특정 메소드를 오버라이드하는 것입니다. `KeeperRead`는 스토어에 대한 쓰기 권한이 없어야합니다. 그러므로 우리는 제안서 큐의 메소드들인 `SetProposal()`, `SetVote()` 및 `NewProposalID()` 메소드와 `setProposalQueue()` 메소드를 오버라이드 할 것입니다. `KeeperRead`의 경우, 이 메소드는 단지 에러를 던질 것입니다.
 
-*주의: 코드를 보면, 컨텍스트 `ctx`가 많은 메소드의 매개 변수라는 것을 알 수 있습니다. 컨텍스트 `ctx '는 현재 블록 높이와 같은 현재 상태에 대한 유용한 정보를 제공하고 키퍼 `k`가 `KVStore`에 접근하도록 허용합니다. [여기] (https://github.com/cosmos/cosmos-sdk/blob/develop/types/context.go#L144-L168) 에서 `ctx`의 모든 메소드를 확인할 수 있습니다*.
+*주의: 코드를 보면, 컨텍스트 `ctx`가 많은 메소드의 매개 변수라는 것을 알 수 있습니다. 컨텍스트 `ctx '는 현재 블록 높이와 같은 현재 상태에 대한 유용한 정보를 제공하고 키퍼 `k`가 `KVStore`에 접근하도록 허용합니다. [여기](https://github.com/cosmos/cosmos-sdk/blob/develop/types/context.go#L144-L168) 에서 `ctx`의 모든 메소드를 확인할 수 있습니다*.
 
 #### 핸들러 (`handler.go`)
 
@@ -640,7 +639,7 @@ func NewEndBlocker(k Keeper) sdk.EndBlocker {
 }
 ```
 
-각 모듈이 어플리케이션 레벨에서`BeginBlock`과`EndBlock` 생성자를 선언해야한다는 것을 잊지 마십시오. [어플리케이션 - 모두 함께 연결하기] (# application _-_ bridging_it_all_together)를 참조하십시오.
+각 모듈이 어플리케이션 레벨에서`BeginBlock`과`EndBlock` 생성자를 선언해야한다는 것을 잊지 마십시오. [어플리케이션 - 모두 함께 연결하기](# application _-_ bridging_it_all_together)를 참조하십시오.
 
 우리의 단순한 관리 어플리케이션을 위해, 우리는 투표 결과를 자동으로 집계하기 위해 `EndBlock`을 사용할 것입니다. 수행할 단계는 다음과 같습니다:
 
@@ -738,7 +737,7 @@ ________________________________________________________
 
 프런트엔드 개발자와 서비스 공급자가 적절하게 상호 작용할 수 있도록 적절한 endpoints를  제공하는 것은 모듈 개발자의 임무입니다.
 
-간단한 관리 모듈의 endpoints에 대한 실제 코드내 구현에 대해서는 [이 파일] (../client/rest/simple_governance.go)을 살펴볼 수 있습니다. 또한 REST API 모범 사례를 위한 [링크] (https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)가 있습니다.
+간단한 관리 모듈의 endpoints에 대한 실제 코드내 구현에 대해서는 [이 파일](../client/rest/simple_governance.go)을 살펴볼 수 있습니다. 또한 REST API 모범 사례를 위한 [링크](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9)가 있습니다.
 
 ### 어플리케이션 - 모두 함께 연결하기
 
