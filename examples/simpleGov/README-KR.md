@@ -259,10 +259,10 @@ type AccountMapper struct {
  }
 ```
 
-다양한 패키지는 일반적으로 자체 메시지 유형을 정의합니다.  `Basecoin` 예제 어플리케이션은 `app.go`에 등록 된 여러 메시지 유형을 포함합니다:
+다양한 패키지는 일반적으로 자체 메시지 유형을 정의합니다. `Basecoin` 예제 어플리케이션은 `app.go`에 등록 된 여러 메시지 유형을 포함합니다:
 
 ```go
-sdk.RegisterWire(cdc)    // Msgs 등록
+ sdk.RegisterWire(cdc)    // Msgs 등록
  bank.RegisterWire(cdc)
  stake.RegisterWire(cdc)
  slashing.RegisterWire(cdc)
