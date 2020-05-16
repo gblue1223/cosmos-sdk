@@ -60,6 +60,10 @@ install_examples:
 	go install $(BUILD_FLAGS) ./examples/democoin/cmd/democoind
 	go install $(BUILD_FLAGS) ./examples/democoin/cmd/democli
 
+install_pcoin:
+	go install $(BUILD_FLAGS) ./examples/pcoin/cmd/pcoind
+	go install $(BUILD_FLAGS) ./examples/pcoin/cmd/pcoincli
+
 install_debug:
 	go install $(BUILD_FLAGS) ./cmd/gaia/cmd/gaiadebug
 
